@@ -1,11 +1,13 @@
 import csv
 import os
+import time
 
 
 ANSWERS_HEADER = ['id', 'submission_time', 'vote_number', 'question_id', 'message', 'image']
 QUESTIONS_HEADER = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
 ANSWER_FILE_PATH = 'sample_data/answer.csv'
 QUESTION_FILE_PATH = 'sample_data/question.csv'
+
 
 
 def read_from_csv(file=QUESTION_FILE_PATH, id=None):
@@ -40,9 +42,32 @@ def write_to_csv(message, file=QUESTION_FILE_PATH, is_new=True):
             writer.writerow(message)
 
 
+def generate_id(file=QUESTION_FILE_PATH):
+    list_of_messages = read_from_csv(file)
+    if len(list_of_messages) == 0:
+        new_id = '1'
+        return new_id
+    max_id = 0
+    for row in list_of_messages:
+        if int(row['id']) > max_id:
+            max_id = int(row['id'])
+    new_id = str(max_id + 1)
+    return new_id
 
 
+def collect_data(recieved_data, header=QUESTIONS_HEADER):
+    if header == QUESTIONS_HEADER:
+        file = QUESTION_FILE_PATH
+    else:
+        file = ANSWER_FILE_PATH
+    message = {key: "" for key in header}
+    for key in recieved_data: #TODO more specific code
+        message[key] = recieved_data[key]
+    message['id'] = generate_id(file)
+    message['submission_time'] = time.time()
+    return message
 
 
+print(collect_data({'title': 'janexs', 'a': 'ok'}))
 
 
