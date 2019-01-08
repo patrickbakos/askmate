@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AskMate</title>
+</head>
+<body>
+    <h1>Ask Mate</h1>
+
+        {% for row in  sorted_messages %}
+        <p>
+            <a href="seggem.html">{{ row['id'] }}. {{ row['title'] }}</a>
+            <br>
+            <span> {{ row['message'] }}</span>
+        </p>
+        {% endfor %}
+
+</body>
+</html>
