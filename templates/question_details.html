@@ -36,11 +36,17 @@ th {
             <th>{{header}}</th>
         {%endfor%}
         </tr>
-            <tr>
-                {% for qdata in question %}
-                <td align="center" >{{question[qdata]}}</td>
-                {%endfor%}
-            </tr>
+        <tr>
+            {% for qdata in question %}
+                {% if loop.index == 1 %}
+                    <td><a href="/">{{question[qdata]}}</a>
+            </td>
+                {% else %}
+                    <td align="center" >{{question[qdata]}}</td>
+                {% endif %}
+            {%endfor%}
+        </tr>
+
 
     </table>
 
