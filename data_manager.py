@@ -69,6 +69,3 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
     return message
 
 
-# print(collect_data({'title': 'janexs', 'a': 'ok'}))
-
-
