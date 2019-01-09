@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import data_manager
 import util
+import copy
 
 app = Flask(__name__)
 
@@ -15,12 +16,14 @@ def index():
 @app.route('/question/<question_id>')
 def get_question_details(question_id):
     question = data_manager.read_from_csv(id=question_id)
+    title = copy.deepcopy(question["title"])
+    del question["title"]
     header = []
     for details in question:
         formatted_header = details.replace("_", " ").capitalize()  # Style formatting of the string for proper look
         if formatted_header not in header:
             header.append(formatted_header)
-    return render_template('question_details.html', question=question, header=header)
+    return render_template('question_details.html', question=question, header=header, title=title)
 
 
 @app.route('/add-question', methods=['GET', 'POST'])
