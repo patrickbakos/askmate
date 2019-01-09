@@ -18,12 +18,36 @@ def get_question_details(question_id):
     question = data_manager.read_from_csv(id=question_id)
     title = copy.deepcopy(question["title"])
     del question["title"]
-    header = []
+
+    question_header = []
+
     for details in question:
         formatted_header = details.replace("_", " ").capitalize()  # Style formatting of the string for proper look
-        if formatted_header not in header:
-            header.append(formatted_header)
-    return render_template('question_details.html', question=question, header=header, title=title)
+        if formatted_header not in question_header:
+            question_header.append(formatted_header)
+
+    all_answers = data_manager.read_from_csv(data_manager.ANSWER_FILE_PATH)
+
+    answers = []
+
+    for answer in all_answers:
+        if answer["question_id"] == question_id:
+            answers.append(answer)
+
+    answers_header = []
+
+    for details in answers:
+        for key in details:
+            formatted_header = key.replace("_", " ").capitalize()
+            if formatted_header not in answers_header:
+                answers_header.append(formatted_header)
+
+    return render_template('question_details.html',
+                           question=question,
+                           question_header=question_header,
+                           title=title,
+                           answers=answers,
+                           answers_header=answers_header)
 
 
 @app.route('/add-question', methods=['GET', 'POST'])

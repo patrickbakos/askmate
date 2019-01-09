@@ -32,7 +32,7 @@ th {
     <table style="width: 100%">
 
         <tr>
-        {%for header in header%}
+        {%for header in question_header%}
             <th>{{header}}</th>
         {%endfor%}
         </tr>
@@ -43,5 +43,28 @@ th {
             </tr>
 
     </table>
+
+    <br>
+
+
+ <table style="width: 100%">
+
+        <tr>
+        {%for header in answers_header%}
+            <th>{{header}}</th>
+        {%endfor%}
+        </tr>
+
+                {% for answer in answers %}
+            <tr>
+                {% for detail in answer %}
+                <td align="center" >{{answer[detail]}}</td>
+                {%endfor%}
+            </tr>
+                {%endfor%}
+
+
+    </table>
+
  </body>
 </html>
