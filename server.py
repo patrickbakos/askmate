@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import data_manager
 import util
 
@@ -14,6 +14,27 @@ def index():
     return render_template('index.html',
                            messages=messages,
                            sorted_messages=sorted_messages)
+
+
+@app.route('/add-question', methods=['GET', 'POST'])
+def add_question():
+    if request.method == 'GET':
+        return render_template('add_question.html')
+    else:
+        new_question = {
+            'title': request.form.get('title'),
+            'message': request.form.get('message')
+        }
+
+        # Generating the final dictionary for the  new question
+        new_question_final = data_manager.collect_data(new_question)
+
+        # Writing the new question to the csv
+        data_manager.write_to_csv(new_question_final)
+
+        question_id = new_question_final['id']
+
+        return redirect('/question/<question_id>') #TODO Generating the url still doesn't work
 
 
 if __name__ == "__main__":
