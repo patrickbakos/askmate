@@ -35,8 +35,9 @@ def write_to_csv(message, file=QUESTION_FILE_PATH, is_new=True):
         writer.writeheader()
 
         for row in old_message:
-            if message['id'] == row['id']:
-                row = message
+            if not is_new:
+                if message['id'] == row['id']:
+                    row = message
             writer.writerow(row)
         if is_new:
             writer.writerow(message)
@@ -68,6 +69,6 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
     return message
 
 
-print(collect_data({'title': 'janexs', 'a': 'ok'}))
+# print(collect_data({'title': 'janexs', 'a': 'ok'}))
 
 
