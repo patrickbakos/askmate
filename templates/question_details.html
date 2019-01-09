@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Details</title>
+</head>
+<style>
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+
+<header>
+    <h1>Question Details</h1>
+</header>
+
+ <body>
+    <table style="width: 100%">
+
+        <tr>
+        {%for header in header%}
+            <th>{{header}}</th>
+        {%endfor%}
+        </tr>
+            <tr>
+                {% for qdata in question %}
+                <td align="center" >{{question[qdata]}}</td>
+                {%endfor%}
+            </tr>
+
+    </table>
+ </body>
+</html>

@@ -12,6 +12,17 @@ def index():
     return render_template('index.html', sorted_messages=sorted_messages)
 
 
+@app.route('/question/<question_id>')
+def get_question_details(question_id):
+    question = data_manager.read_from_csv(id=question_id)
+    header = []
+    for details in question:
+        formatted_header = details.replace("_", " ").capitalize()  # Style formatting of the string for proper look
+        if formatted_header not in header:
+            header.append(formatted_header)
+    return render_template('question_details.html', question=question, header=header)
+
+
 @app.route('/add-question', methods=['GET', 'POST'])
 def add_question():
     if request.method == 'GET':
@@ -30,7 +41,8 @@ def add_question():
 
         question_id = new_question_final['id']
 
-        return redirect('/question/<question_id>') #TODO Generating the url still doesn't work
+        return redirect('/question/<question_id>') #TODO
+        # Generating the url still doesn't work
 
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])

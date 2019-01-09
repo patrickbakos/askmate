@@ -14,8 +14,8 @@
         </tr>
         {% for row in  sorted_messages %}
         <tr>
-            <td><a href="seggem.html">{{ row['id'] }}</a></td>
-            <td><a href="seggem.html">{{ row['title'] }}</a></td>
+            <td>{{ row['id'] }}</td>
+            <td><a href="/question/{{ row['id'] }}">{{ row['title'] }}</a></td>
         </tr>
         {% endfor %}
         </table>
