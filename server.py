@@ -33,6 +33,24 @@ def add_question():
         return redirect('/question/<question_id>') #TODO Generating the url still doesn't work
 
 
+@app.route('/answer', methods=['GET', 'POST'])
+def add_answer():
+    if request.method == 'GET':
+        return render_template('answer.html')
+    else:
+        new_answer = {'answer': request.form.get('answer')}
+
+        # Generating the final dictionary for the  new question
+        new_answer_final = data_manager.collect_data(new_answer)
+
+        # Writing the new question to the csv
+        data_manager.write_to_csv(new_answer_final)
+
+        answer_id = new_answer_final['id']
+
+        return redirect('/index')
+
+
 if __name__ == "__main__":
     app.run(
         debug=True,
