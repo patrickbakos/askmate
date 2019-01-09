@@ -6,15 +6,17 @@
 </head>
 <body>
     <h1>Ask Mate</h1>
-    <p><a href="/add-question">Add a new question</a></p>
-
+        <table>
+        <tr>
+            <th>ID</th>
+            <th>Questions</th>
+        </tr>
         {% for row in  sorted_messages %}
-        <p>
-            <a href="seggem.html">{{ row['id'] }}. {{ row['title'] }}</a>
-            <br>
-            <span> {{ row['message'] }}</span>
-        </p>
+        <tr>
+            <td><a href="seggem.html">{{ row['id'] }}</a></td>
+            <td><a href="seggem.html">{{ row['title'] }}</a></td>
+        </tr>
         {% endfor %}
-
+        </table>
 </body>
 </html>
