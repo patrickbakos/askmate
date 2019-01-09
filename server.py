@@ -33,8 +33,8 @@ def add_question():
         return redirect('/question/<question_id>') #TODO Generating the url still doesn't work
 
 
-@app.route('/answer', methods=['GET', 'POST'])
-def add_answer():
+@app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
+def add_answer(question_id):
     if request.method == 'GET':
         return render_template('answer.html')
     else:
@@ -44,9 +44,9 @@ def add_answer():
         new_answer_final = data_manager.collect_data(new_answer)
 
         # Writing the new question to the csv
-        data_manager.write_to_csv(new_answer_final)
+        data_manager.write_to_csv(new_answer_final, data_manager.ANSWER_FILE_PATH)
 
-        answer_id = new_answer_final['id']
+        answer_id = new_answer_final['answer_id']
 
         return redirect('/index')
 
