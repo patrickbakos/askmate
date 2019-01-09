@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import data_manager
 import util
 
@@ -33,16 +33,17 @@ def add_question():
             'message': request.form.get('message')
         }
 
-        # Generating the final dictionary for the  new question
+        # Generating the final dictionary for the new question
         new_question_final = data_manager.collect_data(new_question)
 
         # Writing the new question to the csv
         data_manager.write_to_csv(new_question_final)
 
+        # Generating the URL for the new question
         question_id = new_question_final['id']
+        question_url = url_for('get_question_details', question_id=question_id)
 
-        return redirect('/question/<question_id>') #TODO
-        # Generating the url still doesn't work
+        return redirect(question_url)
 
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
