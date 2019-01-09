@@ -7,5 +7,5 @@ def sort_by_key(key='submission_time', reverse=False, database='questions'):
     else:
         database = data_manager.ANSWER_FILE_PATH
     file = data_manager.read_from_csv(database)
-    file.sort(key=lambda row: row[key], reverse=reverse)
+    file.sort(key=lambda row: row[key], reverse=True)
     return file
