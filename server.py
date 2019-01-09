@@ -86,9 +86,10 @@ def add_answer(question_id):
         # Writing the new question to the csv
         data_manager.write_to_csv(new_answer_final, data_manager.ANSWER_FILE_PATH)
 
-        answer_id = new_answer_final['answer_id']
+        # Generating the URL for the new answer
+        answer_url = url_for('add_answer', question_id=question_id)
 
-        return redirect('/index')
+        return redirect(answer_url)
 
 
 if __name__ == "__main__":
