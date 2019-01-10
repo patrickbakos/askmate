@@ -93,16 +93,16 @@ def add_answer(question_id):
     if request.method == 'GET':
         return render_template('answer.html')
     else:
-        new_answer = {'answer': request.form.get('answer')}
+        new_answer = {'message': request.form.get('answer')}
 
         # Generating the final dictionary for the  new question
-        new_answer_final = data_manager.collect_data(new_answer)
-
+        new_answer_final = data_manager.collect_data(new_answer, header=data_manager.ANSWERS_HEADER)
+        new_answer_final['question_id'] = question_id
         # Writing the new question to the csv
         data_manager.write_to_csv(new_answer_final, data_manager.ANSWER_FILE_PATH)
 
         # Generating the URL for the new answer
-        answer_url = url_for('add_answer', question_id=question_id)
+        answer_url = url_for('get_question_details', question_id=question_id)
 
         return redirect(answer_url)
 
