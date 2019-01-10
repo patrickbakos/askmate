@@ -41,13 +41,14 @@ def get_question_details(question_id):
             formatted_header = key.replace("_", " ").capitalize()
             if formatted_header not in answers_header:
                 answers_header.append(formatted_header)
-
+    edit_question_url = url_for('route_edit_question', question_id=question_id)
     return render_template('question_details.html',
                            question=question,
                            question_header=question_header,
                            title=title,
                            answers=answers,
-                           answers_header=answers_header)
+                           answers_header=answers_header,
+                           edit_question_url=edit_question_url)
 
 
 @app.route('/add-question', methods=['GET', 'POST'])
@@ -73,21 +74,35 @@ def add_question():
         return redirect(question_url)
 
 
+@app.route('/question/<question_id>/edit-question', methods=['GET', 'POST'])
+def route_edit_question(question_id):
+    if request.method == 'GET':
+        return render_template('edit_question.html')
+    else:
+        question = data_manager.read_from_csv(id=question_id)
+        question['title'] = request.form.get('title')
+        question['message'] = request.form.get('message')
+        question['submission_time'] = data_manager.get_time()
+        question_url = url_for('get_question_details', question_id=question_id)
+        data_manager.write_to_csv(question, is_new=False)
+        return redirect(question_url)
+
+
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def add_answer(question_id):
     if request.method == 'GET':
         return render_template('answer.html')
     else:
-        new_answer = {'answer': request.form.get('answer')}
+        new_answer = {'message': request.form.get('answer')}
 
         # Generating the final dictionary for the  new question
-        new_answer_final = data_manager.collect_data(new_answer)
-
+        new_answer_final = data_manager.collect_data(new_answer, header=data_manager.ANSWERS_HEADER)
+        new_answer_final['question_id'] = question_id
         # Writing the new question to the csv
         data_manager.write_to_csv(new_answer_final, data_manager.ANSWER_FILE_PATH)
 
         # Generating the URL for the new answer
-        answer_url = url_for('add_answer', question_id=question_id)
+        answer_url = url_for('get_question_details', question_id=question_id)
 
         return redirect(answer_url)
 

@@ -6,14 +6,10 @@
     </head>
     <body>
         <h1>Add a new answer</h1>
-        <form action="{{ url_for('add_answer') }}" method="post">
+        <form action="{{ answer_url }}" method="post">
             <p>
                 <label for="answer">Answer:</label><br>
                 <textarea name="answer" id="answer" rows="6" cols="50" minlength="10" required></textarea>
-            </p>
-            <p>
-                <label for="image">Image:</label><br>
-                <input type="file" name="img" accept="image/*">
             </p>
             <p>
                 <input type="submit" value='Add answer'>

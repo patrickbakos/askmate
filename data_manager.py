@@ -69,6 +69,10 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
     return message
 
 
+def get_time():
+    return time.time()
+
+
 def overwrite_old_csv(new_data, file=QUESTION_FILE_PATH):
     """Can be used to overwrite the whole csv with the new data,
         for example when you want to delete a row from the csv.
@@ -107,3 +111,4 @@ def find_answer_id(question_id, file=ANSWER_FILE_PATH):
         if row['question_id'] == question_id:
             answer_ids.append(row['id'])
     return answer_ids
+

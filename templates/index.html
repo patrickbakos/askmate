@@ -4,22 +4,64 @@
     <meta charset="UTF-8">
     <title>AskMate</title>
 </head>
+
+<style>
+    .wrapper {
+        text-align: center;
+    }
+
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+
+    table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
 <body>
-    <h1>Ask Mate</h1>
-    <h4><a href="/add-question">Add a new question</a></h4>
-        <table>
-        <tr>
-            <th>ID</th>
-            <th>Questions</th>
-            <th>Delete</th>
-        </tr>
-        {% for row in  sorted_messages %}
+<h1>Ask Mate</h1>
+<p>
+<form action="{{ url_for('add_question') }}">
+    <button onclick="location.href= '{{ url_for('add_question') }}'" type="button"
+            style="float: left">
+        Add a new question
+    </button>
+</form>
+<br>
+<br>
+</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Questions</th>
+        <th></th>
+    </tr>
+    {% for row in  sorted_messages %}
         <tr>
             <td>{{ row['id'] }}</td>
-            <td><a href="/question/{{ row['id'] }}">{{ row['title'] }}</a></td>
-            <td><a href="{{ url_for('delete_question', question_id=row['id']) }}">delete</a></td>
+            <td>{{ row['title'] }}</td>
+            <td><a href="{{ url_for('get_question_details', question_id=row['id']) }}">Edit</a></td>
         </tr>
-        {% endfor %}
-        </table>
+    {% endfor %}
+</table>
 </body>
 </html>
+
