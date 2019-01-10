@@ -41,13 +41,14 @@ def get_question_details(question_id):
             formatted_header = key.replace("_", " ").capitalize()
             if formatted_header not in answers_header:
                 answers_header.append(formatted_header)
-
+    edit_question_url = url_for('route_edit_question', question_id=question_id)
     return render_template('question_details.html',
                            question=question,
                            question_header=question_header,
                            title=title,
                            answers=answers,
-                           answers_header=answers_header)
+                           answers_header=answers_header,
+                           edit_question_url=edit_question_url)
 
 
 @app.route('/add-question', methods=['GET', 'POST'])
@@ -85,7 +86,6 @@ def route_edit_question(question_id):
         question_url = url_for('get_question_details', question_id=question_id)
         data_manager.write_to_csv(question, is_new=False)
         return redirect(question_url)
-
 
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])

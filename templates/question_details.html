@@ -40,7 +40,7 @@ th {
             {% for qdata in question %}
                 {% if qdata == 'id' %}
                     <td align="center">
-                        <a href="/question/{{question['id']}}/new-answer">{{question[qdata]}}</a>
+                        <a href="{{ url_for('add_answer', question_id=question['id']) }}">{{question[qdata]}}</a>
                     </td>
                 {% else %}
                     <td align="center" >{{question[qdata]}}</td>
@@ -51,7 +51,7 @@ th {
     </table>
 
     <br>
-    <a href="/question/{{ question['id'] }}/edit-question">Edit question</a>
+    <a href="{{ edit_question_url }}">Edit question</a>
 
  <table style="width: 100%">
 

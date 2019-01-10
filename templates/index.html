@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Ask Mate</h1>
-    <h4><a href="/add-question">Add a new question</a></h4>
+    <h4><a href="{{ url_for('add_question') }}">Add a new question</a></h4>
         <table>
         <tr>
             <th>ID</th>
@@ -15,11 +15,10 @@
         {% for row in  sorted_messages %}
         <tr>
             <td>{{ row['id'] }}</td>
-            <td><a href="/question/{{ row['id'] }}">{{ row['title'] }}</a></td>
+            <td><a href="{{ url_for('get_question_details', question_id=row['id']) }}">{{ row['title'] }}</a></td>
         </tr>
         {% endfor %}
         </table>
 </body>
 </html>
-<p></p>
-<html></html>
+
