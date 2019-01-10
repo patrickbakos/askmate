@@ -92,6 +92,45 @@ def add_answer(question_id):
         return redirect(answer_url)
 
 
+@app.route('/question/<question_id>/delete')
+def delete_question(question_id):
+    # Reading all data from question.csv to a list of dictionaries
+    question_reader = data_manager.read_from_csv()
+
+    # Deleting the question's dict from the list
+    for row in question_reader:
+        if row['id'] == question_id:
+            question_reader.remove(row)
+
+    # Writing back the list to the csv
+    data_manager.overwrite_old_csv(question_reader)
+
+    # Deleting the answers given to that question
+    answer_ids = data_manager.find_answer_id(question_id)
+    for id in answer_ids:
+        delete_answer(id)
+
+    return redirect('/')
+
+
+@app.route('/answer/<answer_id>/delete')
+def delete_answer(answer_id):
+    # Reading all data from answer.csv to a list of dictionaries
+    answer_reader = data_manager.read_from_csv(file=data_manager.ANSWER_FILE_PATH)
+
+    # Deleting the answer's dict from the list
+    for row in answer_reader:
+        if row['id'] == answer_id:
+            answer_reader.remove(row)
+            question_id = row['question_id']
+
+    # Writing back the list to the csv
+    data_manager.overwrite_old_csv(answer_reader, file=data_manager.ANSWER_FILE_PATH)
+
+    question_url = url_for('get_question_details', question_id=question_id)
+    return redirect(question_url)
+
+
 if __name__ == "__main__":
     app.run(
         debug=True,
