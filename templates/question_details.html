@@ -5,6 +5,15 @@
     <title>Question Details</title>
 </head>
 <style>
+    .wrapper {
+        text-align: center;
+    }
+
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+
     table {
         border: 1px solid #ddd;
         border-collapse: collapse;
@@ -91,6 +100,16 @@
 
 
 </table>
+<br>
+
+<div class="wrapper">
+    <form action="/question/{{ question['id'] }}/new-answer">
+        <button onclick="location.href= '/'" type="button"
+        >
+            Back to the Main Page
+        </button>
+    </form>
+</div>
 
 </body>
 </html>
