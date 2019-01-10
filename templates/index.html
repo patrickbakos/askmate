@@ -3,39 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>AskMate | Welcome!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
-<style>
-    .wrapper {
-        text-align: center;
-    }
-
-    .button {
-        position: absolute;
-        top: 50%;
-    }
-
-    table {
-        border: 1px solid #ddd;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2
-    }
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
-
 <body>
+
 <h1>Ask Mate</h1>
 <p>
 <form action="{{ url_for('add_question') }}">
@@ -60,7 +32,7 @@
             <td>{{ row['id'] }}</td>
             <td>{{ row['title'] }}</td>
             <td><a href="{{ url_for('get_question_details', question_id=row['id']) }}">Edit</a></td>
-            <td><a href="{{ url_for('delete_question', question_id=row['id']) }}">delete</a></td>
+            <td><a href="{{ url_for('delete_question', question_id=row['id']) }}">Delete</a></td>
         </tr>
     {% endfor %}
 </table>

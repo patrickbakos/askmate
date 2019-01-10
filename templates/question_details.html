@@ -3,37 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Question Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
-<style>
-    .wrapper {
-        text-align: center;
-    }
-
-    .button {
-        position: absolute;
-        top: 50%;
-    }
-
-    table {
-        border: 1px solid #ddd;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2
-    }
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-</style>
-
 
 <header>
     <h1>{{ title }}</h1>
