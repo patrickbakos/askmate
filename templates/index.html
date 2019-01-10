@@ -11,11 +11,13 @@
         <tr>
             <th>ID</th>
             <th>Questions</th>
+            <th>Delete</th>
         </tr>
         {% for row in  sorted_messages %}
         <tr>
             <td>{{ row['id'] }}</td>
             <td><a href="/question/{{ row['id'] }}">{{ row['title'] }}</a></td>
+            <td><a href="{{ url_for('delete_question', question_id=row['id']) }}">delete</a></td>
         </tr>
         {% endfor %}
         </table>
