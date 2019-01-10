@@ -88,6 +88,9 @@
         {% for header in answers_header %}
             <th>{{ header }}</th>
         {% endfor %}
+        {% if answers_header %}
+            <th>Delete</th>
+        {% endif %}
     </tr>
 
     {% for answer in answers %}
@@ -95,6 +98,7 @@
             {% for detail in answer %}
                 <td align="center">{{ answer[detail] }}</td>
             {% endfor %}
+            <td align="center"><a href="{{ url_for('delete_answer', answer_id=answer['id'])}}">delete</a></td>
         </tr>
     {% endfor %}
 

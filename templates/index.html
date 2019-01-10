@@ -52,13 +52,15 @@
     <tr>
         <th>ID</th>
         <th>Questions</th>
-        <th></th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     {% for row in  sorted_messages %}
         <tr>
             <td>{{ row['id'] }}</td>
             <td>{{ row['title'] }}</td>
             <td><a href="{{ url_for('get_question_details', question_id=row['id']) }}">Edit</a></td>
+            <td><a href="{{ url_for('delete_question', question_id=row['id']) }}">delete</a></td>
         </tr>
     {% endfor %}
 </table>
