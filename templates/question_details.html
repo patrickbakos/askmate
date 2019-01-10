@@ -21,7 +21,7 @@
 
 <p><br></p>
 
-<table style="width: 100%">
+<table class=table1 style="width: 100%">
 
     <tr>
         {% for header in question_header %}
@@ -47,7 +47,7 @@
 
 <h3>Answers</h3>
 
-<table style="width: 100%">
+<table class=table1 style="width: 100%">
 
     <tr>
         {% for header in answers_header %}
@@ -63,7 +63,7 @@
             {% for detail in answer %}
                 <td align="center">{{ answer[detail] }}</td>
             {% endfor %}
-            <td align="center"><a href="{{ url_for('delete_answer', answer_id=answer['id'])}}">delete</a></td>
+            <td align="center"><a href="{{ url_for('delete_answer', answer_id=answer['id']) }}">delete</a></td>
         </tr>
     {% endfor %}
 

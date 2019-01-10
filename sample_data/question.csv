@@ -2,10 +2,10 @@ id,submission_time,view_number,vote_number,title,message,image
 2,1493015432,1364,57,Drawing canvas with an image picked with Cordova Camera Plugin,"I'm getting an image from device and drawing a canvas with filters using Pixi JS. It works all well using computer to get an image. But when I'm on IOS, it throws errors such as cross origin issue, or that I'm trying to use an unknown format.
 
 This is the code I'm using to draw the image (that works on web/desktop but not cordova built ios app)",
-3,1547143881.656256,,,Stalin,igennemnemnem,
-4,1547143901.8315067,,,dadi,oki dadi mi van?,
-6,1547144551.2001276,,,dudi:::::::::::::anyadba,anyadbafaszodbafaszodba,
-7,1547144712.6933937,,,mami,"anyadba a mamival, 
-na de meirt
-",
-8,1547145876.049605,,,Mocskos egy fos ez :),bassszam meg ezt szart,
+9,1547153287.8510165,,,How can I iterate on a dictionary's keys?,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac ex vitae tellus aliquam blandit. Quisque fringilla bibendum tortor suscipit imperdiet. In urna nisi, aliquam vel fermentum a, commodo nec arcu. Praesent id tellus vitae nunc mollis sodales. Curabitur id quam semper, vulputate nibh eu, ultrices tellus. Duis convallis, nulla eget mattis dictum, diam lectus scelerisque mi, non fringilla nunc tortor at dolor. Vivamus luctus scelerisque velit, feugiat tincidunt turpis suscipit et. Nullam commodo metus ipsum, eu commodo augue auctor non. Mauris tempus placerat urna, a cursus nunc dignissim vel. Suspendisse potenti.",
+10,1547150075.2987804,,,"Suspendisse porttitor, diam quis egestas lacinia, quam magna sagittis urna, vel accumsan neque lorem non turpis. Curabitur dapibus tincidunt ipsum vel tristique.","Suspendisse porttitor, diam quis egestas lacinia, quam magna sagittis urna, vel accumsan neque lorem non turpis. Curabitur dapibus tincidunt ipsum vel tristique.",
+11,1547151652.306082,,,How can I iterate on a dictionary's values?,"Suspendisse porttitor, diam quis egestas lacinia, quam magna sagittis urna, vel accumsan neque lorem non turpis. Curabitur dapibus tincidunt ipsum vel tristique.",
+12,1547151847.1081097,,,Just a simple test case,"<button onclick=""location.href= '{{ url_for('add_question') }}'"" type=""button""
+            style=""float: left"">
+        Add a new question
+    </button>",
