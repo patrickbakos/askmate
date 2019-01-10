@@ -5,72 +5,92 @@
     <title>Question Details</title>
 </head>
 <style>
-table {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-}
+    table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+    }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
-tr:nth-child(even){background-color: #f2f2f2}
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
 
-th {
-  background-color: #4CAF50;
-  color: white;
-}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
 </style>
 
 
 <header>
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
 </header>
 
- <body>
-    <table style="width: 100%">
+<body>
 
+<form action="/question/{{ question['id'] }}/new-answer">
+    <button onclick="location.href= '{{ edit_question_url }}'" type="button"
+            style="float: left">
+        Edit question
+    </button>
+</form>
+
+<p><br></p>
+
+<table style="width: 100%">
+
+    <tr>
+        {% for header in question_header %}
+            <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for qdata in question %}
+            {% if qdata == 'id' %}
+                <td align="center">
+                    <a href="{{ url_for('add_answer', question_id=question['id']) }}">{{ question[qdata] }}</a>
+                </td>
+            {% else %}
+                <td align="center">{{ question[qdata] }}</td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+
+</table>
+
+<br>
+
+<form action="/question/{{ question['id'] }}/new-answer">
+    <button onclick="location.href= '{{ url_for('add_answer', question_id=question['id']) }}'" type="button"
+            style="float: right">
+        Answer
+    </button>
+</form>
+
+<h3>Answers</h3>
+
+<table style="width: 100%">
+
+    <tr>
+        {% for header in answers_header %}
+            <th>{{ header }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for answer in answers %}
         <tr>
-        {%for header in question_header%}
-            <th>{{header}}</th>
-        {%endfor%}
+            {% for detail in answer %}
+                <td align="center">{{ answer[detail] }}</td>
+            {% endfor %}
         </tr>
-        <tr>
-            {% for qdata in question %}
-                {% if qdata == 'id' %}
-                    <td align="center">
-                        <a href="{{ url_for('add_answer', question_id=question['id']) }}">{{question[qdata]}}</a>
-                    </td>
-                {% else %}
-                    <td align="center" >{{question[qdata]}}</td>
-                {% endif %}
-            {%endfor%}
-        </tr>
-
-    </table>
-
-    <br>
-    <a href="{{ edit_question_url }}">Edit question</a>
-
- <table style="width: 100%">
-
-        <tr>
-        {%for header in answers_header%}
-            <th>{{header}}</th>
-        {%endfor%}
-        </tr>
-
-                {% for answer in answers %}
-            <tr>
-                {% for detail in answer %}
-                <td align="center" >{{answer[detail]}}</td>
-                {%endfor%}
-            </tr>
-                {%endfor%}
+    {% endfor %}
 
 
-    </table>
+</table>
 
- </body>
+</body>
 </html>
