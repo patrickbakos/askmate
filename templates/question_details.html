@@ -59,13 +59,7 @@
     </tr>
     <tr>
         {% for qdata in question %}
-            {% if qdata == 'id' %}
-                <td align="center">
-                    <a href="{{ url_for('add_answer', question_id=question['id']) }}">{{ question[qdata] }}</a>
-                </td>
-            {% else %}
-                <td align="center">{{ question[qdata] }}</td>
-            {% endif %}
+            <td align="center">{{ question[qdata] }}</td>
         {% endfor %}
     </tr>
 
