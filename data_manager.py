@@ -9,7 +9,6 @@ ANSWER_FILE_PATH = 'sample_data/answer.csv'
 QUESTION_FILE_PATH = 'sample_data/question.csv'
 
 
-
 def read_from_csv(file=QUESTION_FILE_PATH, id=None):
     list_of_data = []
     with open(file) as csv_file:
@@ -78,8 +77,8 @@ def overwrite_old_csv(new_data, file=QUESTION_FILE_PATH):
         for example when you want to delete a row from the csv.
 
         Args:
-        new_data(list of dictionaries): contains the new data
-        file(str): name of file to overwrite
+            new_data(list of dictionaries): contains the new data
+            file(str): name of file to overwrite
         """
 
     if file == QUESTION_FILE_PATH:
@@ -99,10 +98,11 @@ def find_answer_id(question_id, file=ANSWER_FILE_PATH):
     """Finds the IDs of the answers which belong to the given question
 
         Args:
-        question_id(str): ID of the given question
-        file(str): name of file which contains the answers
+            question_id(str): ID of the given question
+            file(str): name of file which contains the answers
 
-        Returns: list of strings"""
+        Returns:
+            list of strings: containing the IDs of answers"""
 
     answer_ids = []
     answer_reader = read_from_csv(file)

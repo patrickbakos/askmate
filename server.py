@@ -76,10 +76,12 @@ def add_question():
 
 @app.route('/question/<question_id>/edit-question', methods=['GET', 'POST'])
 def route_edit_question(question_id):
+    question = data_manager.read_from_csv(id=question_id)
     if request.method == 'GET':
-        return render_template('edit_question.html')
+        question_title = question['title']
+        question_message = question['message']
+        return render_template('edit_question.html', question_title=question_title, question_message=question_message)
     else:
-        question = data_manager.read_from_csv(id=question_id)
         question['title'] = request.form.get('title')
         question['message'] = request.form.get('message')
         question['submission_time'] = data_manager.get_time()
@@ -95,16 +97,17 @@ def add_answer(question_id):
     else:
         new_answer = {'message': request.form.get('answer')}
 
-        # Generating the final dictionary for the  new question
+        # Generating the final dictionary for the new answer
         new_answer_final = data_manager.collect_data(new_answer, header=data_manager.ANSWERS_HEADER)
         new_answer_final['question_id'] = question_id
-        # Writing the new question to the csv
+
+        # Writing the new answer to the csv
         data_manager.write_to_csv(new_answer_final, data_manager.ANSWER_FILE_PATH)
 
-        # Generating the URL for the new answer
-        answer_url = url_for('get_question_details', question_id=question_id)
+        # Generating the URL for the question which the answer belongs to
+        question_url = url_for('get_question_details', question_id=question_id)
 
-        return redirect(answer_url)
+        return redirect(question_url)
 
 
 @app.route('/question/<question_id>/delete')
