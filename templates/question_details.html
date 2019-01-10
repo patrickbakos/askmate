@@ -38,9 +38,9 @@ th {
         </tr>
         <tr>
             {% for qdata in question %}
-                {% if loop.index == 1 %}
+                {% if qdata == 'id' %}
                     <td align="center">
-                        <a href="{{ url_for('/') }}">{{question[qdata]}}</a>
+                        <a href="/question/{{question['id']}}/new-answer">{{question[qdata]}}</a>
                     </td>
                 {% else %}
                     <td align="center" >{{question[qdata]}}</td>
