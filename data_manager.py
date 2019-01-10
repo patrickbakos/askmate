@@ -69,3 +69,5 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
     return message
 
 
+def get_time():
+    return time.time()
