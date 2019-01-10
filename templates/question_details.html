@@ -38,13 +38,7 @@ th {
         </tr>
         <tr>
             {% for qdata in question %}
-                {% if loop.index == 1 %}
-                    <td align="center">
-                        <a href="{{ url_for('/') }}">{{question[qdata]}}</a>
-                    </td>
-                {% else %}
-                    <td align="center" >{{question[qdata]}}</td>
-                {% endif %}
+                <td align="center" >{{question[qdata]}}</td>
             {%endfor%}
         </tr>
 
@@ -60,6 +54,9 @@ th {
         {%for header in answers_header%}
             <th>{{header}}</th>
         {%endfor%}
+        {% if answers_header %}
+            <th>Delete</th>
+        {% endif %}
         </tr>
 
                 {% for answer in answers %}
@@ -67,6 +64,9 @@ th {
                 {% for detail in answer %}
                 <td align="center" >{{answer[detail]}}</td>
                 {%endfor%}
+
+                <td align="center"><a href="{{ url_for('delete_answer', answer_id=answer['id'])}}">delete</a></td>
+
             </tr>
                 {%endfor%}
 
