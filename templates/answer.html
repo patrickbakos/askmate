@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AskMate | Add a new answer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-<body>
-<h1>Add a new answer</h1>
-<form action="{{ answer_url }}" method="post">
-    <p>
-    <h3><label for="answer">Answer:</label><br></h3>
-    <textarea name="answer" id="answer" rows="6" cols="50" minlength="10" required></textarea>
-    </p>
-    <p>
-        <button type="submit" style="float: left"> Add answer</button>
-    </p>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>AskMate | Add a new answer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+    <body>
+        <h1>Add a new answer</h1>
+        <form action="{{ answer_url }}" method="post">
+            <p>
+            <h3><label for="answer">Answer:</label><br></h3>
+            <textarea name="answer" id="answer" rows="6" cols="50" minlength="10" required></textarea>
+            </p>
+            <p>
+                <button type="submit" style="float: left"> Add answer</button>
+            </p>
+        </form>
+        <div class="wrapper">
+            <form action=action="{{ question_url }}" method="post">
+                <button onclick="location.href= '/'" type="button">
+                    Back to the Main Page
+                </button>
+            </form>
+        </div>
+    </body>
 </html>
