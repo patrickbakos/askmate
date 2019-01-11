@@ -104,6 +104,14 @@ def route_edit_question(question_id):
 
 @app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
 def add_answer(question_id):
+    """
+    Add a new answer to the selected question
+    on the Question Details page
+    Args:
+        question_id (string): the ID of the selected question
+    Returns:
+        question_url (string): the URL back to the selected question
+    """
     if request.method == 'GET':
         return render_template('answer.html')
     else:
