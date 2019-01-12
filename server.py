@@ -15,32 +15,28 @@ def index():
 
 @app.route('/question/<question_id>')
 def get_question_details(question_id):
+    """ Input: question_id = string
+        Output: render_template with different attributes
+
+        This function collects the questions'/answers' details for the table creating on the question_details.html
+
+        ATTRIBUTES:
+            question = {dictionary}
+            question_header = {list}
+            title = {string}
+            answers = {list which has dictionaries}
+            answers_header = {list}
+            edit_question_url = {string}
+        """
     question = data_manager.read_from_csv(id=question_id)
     title = copy.deepcopy(question["title"])
     del question["title"]
-
-    question_header = []
-
-    for details in question:
-        formatted_header = details.replace("_", " ").capitalize()  # Style formatting of the string for proper look
-        if formatted_header not in question_header:
-            question_header.append(formatted_header)
+    question_header = util.create_header(question)
 
     all_answers = data_manager.read_from_csv(data_manager.ANSWER_FILE_PATH)
+    answers = [answer for answer in all_answers if answer["question_id"] == question_id]
+    answers_header = util.create_header(question)
 
-    answers = []
-
-    for answer in all_answers:
-        if answer["question_id"] == question_id:
-            answers.append(answer)
-
-    answers_header = []
-
-    for details in answers:
-        for key in details:
-            formatted_header = key.replace("_", " ").capitalize()
-            if formatted_header not in answers_header:
-                answers_header.append(formatted_header)
     edit_question_url = url_for('route_edit_question', question_id=question_id)
     return render_template('question_details.html',
                            question=question,
