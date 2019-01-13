@@ -69,6 +69,10 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
 
 
 def get_time():
+    """
+
+    :return:
+    """
     return time.time()
 
 
