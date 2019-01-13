@@ -43,6 +43,11 @@ def write_to_csv(message, file=QUESTION_FILE_PATH, is_new=True):
 
 
 def generate_id(file=QUESTION_FILE_PATH):
+    """
+    Generates an ID based on CSV file data
+    :param file(str): contains the file path
+    :return: the new ID in a string
+    """
     list_of_messages = read_from_csv(file)
     if len(list_of_messages) == 0:
         new_id = '1'
@@ -70,8 +75,8 @@ def collect_data(recieved_data, header=QUESTIONS_HEADER):
 
 def get_time():
     """
-
-    :return:
+    This function returns a UNIX timestamp
+    :return: {string}
     """
     return time.time()
 
