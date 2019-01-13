@@ -104,11 +104,9 @@ def find_answer_id(question_id, file=ANSWER_FILE_PATH):
         Returns:
             list of strings: containing the IDs of answers"""
 
-    answer_ids = []
-    answer_reader = read_from_csv(file)
+    # REFACTORED by Frici
 
-    for row in answer_reader:
-        if row['question_id'] == question_id:
-            answer_ids.append(row['id'])
+    answer_reader = read_from_csv(file)
+    answer_ids = [row['id'] for row in answer_reader if row['question_id'] == question_id]
     return answer_ids
 
