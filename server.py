@@ -50,13 +50,7 @@ def get_question_details(question_id):
 @app.route('/add-question', methods=['GET', 'POST'])
 def add_question():
     if request.method == 'GET':
-        return render_template('question.html',
-                               question_title='',
-                               question_message='',
-                               page_title="AskMate | Add new question",
-                               header="Add a new question",
-                               button_text='Submit question'
-                               )
+        return render_template('add_question.html')
     else:
         new_question = {
             'title': request.form.get('title'),
@@ -82,13 +76,7 @@ def route_edit_question(question_id):
     if request.method == 'GET':
         question_title = question['title']
         question_message = question['message']
-        return render_template('question.html',
-                               question_title=question_title,
-                               question_message=question_message,
-                               page_title="AskMate | Edit question",
-                               header="Edit question",
-                               button_text='Submit question'
-                               )
+        return render_template('edit_question.html', question_title=question_title, question_message=question_message)
     else:
         question['title'] = request.form.get('title')
         question['message'] = request.form.get('message')
