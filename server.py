@@ -12,6 +12,14 @@ def route_index():
                            messages=messages)
 
 
+@app.route('/question/<question_id>')
+def route_question(question_id):
+    question = connection.read_from_csv(id=question_id)
+    return render_template('question.html',
+                           question=question)
+
+
+
 if __name__ == "__main__":
     app.run(
         debug=True,

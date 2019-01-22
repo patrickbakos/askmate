@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+    <h1>{{ question['title'] }}</h1>
+    <table>
+        <theader>
+            <tr>
+                {% for key in question %}
+                    <td>{{ key }}</td>
+                {% endfor %}
+            </tr>
+        </theader>
+        <tbody>
+            <tr>
+                {% for key in question %}
+                    <td>{{ question[key] }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
