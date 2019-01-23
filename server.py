@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request, url_for, redirect
 import connection
+import util
 
 app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/list')
 def route_index():
     messages = connection.read_from_csv()
-    return render_template('index.html',
-                           messages=messages)
+    sorted_messages = util.sort_messages(messages, sort_key='submission_time')
+    return render_template('list.html',
+                           messages=sorted_messages)
 
 
 @app.route('/question/<question_id>')

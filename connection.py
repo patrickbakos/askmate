@@ -3,8 +3,8 @@ import os
 
 PATH_ANSWER = 'sample_data/answer.csv'
 PATH_QUESTION = 'sample_data/question.csv'
-HEADER_ANSWER = ('id', 'submisson_time', 'vote_number', 'message', 'image')
-HEADER_QUESTION = ('id', 'submisson_time', 'view_number', 'vote_number', 'title', 'message', 'image')
+HEADER_ANSWER = ('id', 'submission_time', 'vote_number', 'message', 'image')
+HEADER_QUESTION = ('id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image')
 
 
 def read_from_csv(file=PATH_QUESTION, id=None):

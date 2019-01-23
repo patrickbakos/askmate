@@ -1,7 +1,12 @@
 import connection
+import time
 
 question = connection.PATH_QUESTION
 answer = connection.PATH_ANSWER
+
+
+def get_time():
+
 
 
 def add_message(message, file=question):
@@ -20,3 +25,4 @@ def delete_message(id, file=question):
         if row['id'] == id:
             old_messages.remove(row)
             return connection.write_to_csv(file, old_messages)
+
