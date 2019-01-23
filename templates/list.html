@@ -5,28 +5,28 @@
     <title>Ask Mate</title>
 </head>
 <body>
-<h1>Ask Mate</h1>
-<table>
-    <theader>
-        <tr>
-            {% for key in messages[0] %}
-                <td>{{ key }}</td>
-            {% endfor %}
-        </tr>
-    </theader>
-    <tbody>
-        {% for row in messages %}
+    <h1>Ask Mate</h1>
+    <table>
+        <theader>
             <tr>
-                <td><a href="{{ url_for('route_question', question_id=row['id']) }}">{{ row['id'] }}</a></td>
-                <td>{{ row['submission_time'] }}</td>
-                <td>{{ row['view_number'] }}</td>
-                <td>{{ row['vote_number'] }}</td>
-                <td><a href="{{ url_for('route_question', question_id=row['id']) }}">{{ row['title'] }}</a></td>
-                <td>{{ row['message'] }}</td>
-                <td>{{ row['image'] }}</td>
+                {% for key in questions[0] %}
+                    <td>{{ key }}</td>
+                {% endfor %}
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </theader>
+        <tbody>
+            {% for row in questions %}
+                <tr>
+                    <td><a href="{{ url_for('route_question', question_id=row['id']) }}">{{ row['id'] }}</a></td>
+                    <td>{{ row['submission_time'] }}</td>
+                    <td>{{ row['view_number'] }}</td>
+                    <td>{{ row['vote_number'] }}</td>
+                    <td><a href="{{ url_for('route_question', question_id=row['id']) }}">{{ row['title'] }}</a></td>
+                    <td>{{ row['message'] }}</td>
+                    <td>{{ row['image'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

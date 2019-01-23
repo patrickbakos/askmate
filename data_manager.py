@@ -5,7 +5,7 @@ question = connection.PATH_QUESTION
 answer = connection.PATH_ANSWER
 
 
-def get_time():
+
 
 
 

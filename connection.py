@@ -7,13 +7,13 @@ HEADER_ANSWER = ('id', 'submission_time', 'vote_number', 'message', 'image')
 HEADER_QUESTION = ('id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image')
 
 
-def read_from_csv(file=PATH_QUESTION, id=None):
+def read_from_csv(file=PATH_QUESTION, id=None, id_key='id'):
     lines = []
     with open(file) as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             data = dict(row)
-            if id is None or id == data['id']:
+            if id is None or id == data[id_key]:
                 lines.append(data)
     if len(lines) > 1:
         return lines
