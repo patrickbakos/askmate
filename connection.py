@@ -12,14 +12,13 @@ def read_from_csv(file=PATH_QUESTION, id=None):
     with open(file) as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
-            data = dict(row)
-            if id is not None and id == data['id']:
-                return data
-            lines.append(data)
-    return lines
+            if id is None or id == row['id']:
+                data = dict(row)
+                lines.append(data)
+        return lines
 
 
-def write_to_csv(file=PATH_QUESTION, data=None):
+def write_to_csv(data, file=PATH_QUESTION):
     if file == PATH_QUESTION:
         header = HEADER_QUESTION
     else:

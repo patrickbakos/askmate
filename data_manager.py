@@ -14,9 +14,9 @@ def add_message(message, file=question):
     for row in old_messages:
         if row['id'] == message['id']:
             row = message
-            return connection.write_to_csv(file, old_messages)
+            return connection.write_to_csv(old_messages, file)
     old_messages.append(message)
-    return connection.write_to_csv((file, old_messages))
+    return connection.write_to_csv((old_messages, file))
 
 
 def delete_message(id, file=question):
@@ -24,5 +24,5 @@ def delete_message(id, file=question):
     for row in old_messages:
         if row['id'] == id:
             old_messages.remove(row)
-            return connection.write_to_csv(file, old_messages)
+            return connection.write_to_csv(old_messages, file)
 

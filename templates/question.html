@@ -6,10 +6,26 @@
 </head>
 <body>
     <h1>{{ question['title'] }}</h1>
-    <table>
+    <table id="question_table">
         <theader>
             <tr>
                 {% for key in question %}
+                    <td>{{ key }}</td>
+                {% endfor %}
+            </tr>
+        </theader>
+        <tbody>
+            <tr>
+                {% for key in question %}
+                    <td>{{ question[key] }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <table id="answers_table">
+        <theader>
+            <tr>
+                {% for key in answer %}
                     <td>{{ key }}</td>
                 {% endfor %}
             </tr>
