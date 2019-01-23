@@ -15,10 +15,7 @@ def read_from_csv(file=PATH_QUESTION, id=None, id_key='id'):
             data = dict(row)
             if id is None or id == data[id_key]:
                 lines.append(data)
-    if len(lines) > 1:
-        return lines
-    else:
-        return lines[0]
+    return lines
 
 
 def write_to_csv(data, file=PATH_QUESTION):
@@ -31,3 +28,5 @@ def write_to_csv(data, file=PATH_QUESTION):
         writer.writeheader()
     for row in data:
         writer.writerow(row)
+
+
