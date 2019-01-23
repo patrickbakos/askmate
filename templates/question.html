@@ -5,28 +5,34 @@
     <title>Question</title>
 </head>
 <body>
-    <h1>{{ question['title'] }}</h1>
+    <h1>{{ question[0]['title'] }}</h1>
     <table>
         <theader>
             <tr>
-                {% for key in question %}
-                    <td>{{ key }}</td>
+                {% for elem in question_header %}
+                    <td><h3>{{ elem }}</h3></td>
                 {% endfor %}
             </tr>
         </theader>
         <tbody>
-            <tr>
-                {% for key in question %}
-                    <td>{{ question[key] }}</td>
-                {% endfor %}
-            </tr>
+                {% for row in question %}
+                <tr>
+                    <td>{{ row['id'] }}</td>
+                    <td>{{ row['submission_time'] }}</td>
+                    <td>{{ row['view_number'] }}</td>
+                    <td>{{ row['vote_number'] }}</td>
+                    <td>{{ row['title'] }}</td>
+                    <td>{{ row['message'] }}</td>
+                    <td>{{ row['image'] }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
     <table>
         <theader>
             <tr>
-                {% for key in answers[0] %}
-                    <td>{{ key }}</td>
+                {% for elem in answer_header %}
+                    <td><h3>{{ elem }}</h3></td>
                 {% endfor %}
             </tr>
         </theader>

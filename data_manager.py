@@ -40,3 +40,12 @@ def sort_messages(data, sort_key='submission_time', reverse=False):
     return util.sort_messages(data=data, sort_key=sort_key, reverse=reverse)
 
 
+def format_header(header=question_header):
+    formatted_header = []
+    for elem in header:
+        formatted_elem = elem.capitalize().replace('_', ' ')
+        formatted_header.append(formatted_elem)
+    return formatted_header
+
+
+
