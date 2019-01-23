@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add question</title>
+</head>
+<body>
+<h1>Add new question</h1>
+<form action="{{ url_for('route_index') }}" method="post">
+    <h4>Title</h4>
+    <input type="text" name="title" size="40" maxlength="50" required>
+    <br>
+    <h4>Message</h4>
+    <textarea name="message" cols="30" rows="10" maxlength="1000" required></textarea>
+    <br>
+    <button type="submit">Submit question</button>
+</form>
+</body>
+</html>

@@ -15,7 +15,7 @@ def route_index():
                            header=header)
 
 
-@app.route('/question/<question_id>')
+@app.route('/question/<question_id>', methods=['GET', 'POST'])
 def route_question(question_id):
     question = data_manager.read_data(id=question_id)
     answers = data_manager.read_data(file=data_manager.answer, id=question_id, id_key='question_id')
@@ -26,6 +26,12 @@ def route_question(question_id):
                            answers=answers,
                            question_header=question_header,
                            answer_header=answer_header)
+
+
+@app.route('/add-question', methods=['GET', 'POST'])
+def route_add_question():
+
+    return render_template('edit_question.html')
 
 
 if __name__ == "__main__":
