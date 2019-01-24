@@ -7,7 +7,7 @@ HEADER_ANSWER = ('id', 'submission_time', 'vote_number', 'message', 'image')
 HEADER_QUESTION = ('id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image')
 
 
-def read_from_csv(file=PATH_QUESTION, id=None, id_key='id'):
+def read_from_csv(file=PATH_QUESTION, id=None, id_key='id'):    #elvileg mukodik
     lines = []
     with open(file) as csv_file:
         reader = csv.DictReader(csv_file)
@@ -18,7 +18,7 @@ def read_from_csv(file=PATH_QUESTION, id=None, id_key='id'):
     return lines
 
 
-def write_to_csv(data, file=PATH_QUESTION):
+def write_to_csv(data, file=PATH_QUESTION): #elvileg mukodik
     if file == PATH_QUESTION:
         header = HEADER_QUESTION
     else:
@@ -26,7 +26,9 @@ def write_to_csv(data, file=PATH_QUESTION):
     with open(file, 'w', newline='') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=header)
         writer.writeheader()
-    for row in data:
-        writer.writerow(row)
+        for row in data:
+            writer.writerow(row)
+
+write_to_csv(read_from_csv(file='sample_data/question2.csv'))
 
 

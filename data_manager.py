@@ -1,5 +1,6 @@
 import connection
 import util
+import time
 
 question = connection.PATH_QUESTION
 answer = connection.PATH_ANSWER
@@ -8,13 +9,9 @@ question_header = connection.HEADER_QUESTION
 
 
 def add_message(message, file=question):
-    old_messages = connection.read_from_csv(file)
-    for row in old_messages:
-        if row['id'] == message['id']:
-            message = row
-            return connection.write_to_csv(old_messages, file)
+    old_messages = connection.read_from_csv(file=file)
     old_messages.append(message)
-    return connection.write_to_csv((old_messages, file))
+    connection.write_to_csv(old_messages, file=file)
 
 
 def delete_message(id, file=question):
@@ -48,4 +45,26 @@ def format_header(header=question_header):
     return formatted_header
 
 
+def generate_id(file=question):
+    messages = connection.read_from_csv(file)
+    max_id = 0
+    for row in messages:
+        if int(row['id']) > max_id:
+            max_id = int(row['id'])
+    new_id = str(max_id + 1)
+    return new_id
 
+
+def get_time():
+    return time.time()
+
+
+'''new_question = {
+            'title': 'cuna',
+            'message': 'beszarsz cuna',
+            'submission_time': get_time(),
+            'id': generate_id(),
+            'view_number': None,
+            'vote_number': None,
+            'image': None
+            }'''
