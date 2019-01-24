@@ -11,10 +11,23 @@
     </a>
 
     <table>
+        <form action="{{ url_for('route_index', sort_key=elem, reverse=value) }}">
+            <select name="sort_key">
+                {% for elem in header %}
+                    <option value="{{ elem }}">{{ elem }}</option>
+                {% endfor %}
+            </select>
+            <select name="reverse">
+                {% for key, value in reverse_dict.items() %}
+                <option value="{{ value }}" selected>{{ key }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="sumbmit">
+        </form>
         <theader>
             <tr>
                 {% for elem in header %}
-                    <td><h3>{{ elem }}</h3></td>
+                   <td><h3>{{ elem }}</h3></td>
                 {% endfor %}
             </tr>
         </theader>

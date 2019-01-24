@@ -7,12 +7,31 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/list', methods=['GET', 'POST'])
 def route_index():
+    reverse_dict = {
+        'Ascending': False,
+        'Descending': True
+    }
+    if request.args.get('sort_key') is None:
+        sort_key = 'submission_time'
+        sort_reverse = False
+    else:
+        sort_key = request.args.get('sort_key')
+        sort_reverse = request.args.get('reverse')
+        if sort_reverse == "False":
+            sort_reverse = False
+        else:
+            sort_reverse = True
+
     questions = data_manager.read_data()
-    sorted_questions = data_manager.sort_messages(questions, sort_key='submission_time', reverse=False)
-    header = data_manager.format_header()
+    sorted_questions = data_manager.sort_messages(questions, sort_key=sort_key, reverse_sorting=sort_reverse)
+    header = data_manager.question_header
+    formatted_header = data_manager.format_header(header)
     return render_template('list.html',
                            questions=sorted_questions,
-                           header=header)
+                           header=header,
+                           formatted_header=formatted_header,
+                           reverse_dict=reverse_dict
+                           )
 
 
 @app.route('/question/<question_id>', methods=['GET', 'POST'])

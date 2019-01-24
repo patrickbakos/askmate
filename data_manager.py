@@ -33,8 +33,8 @@ def read_data(file=question, id=None, id_key='id'):
     return data
 
 
-def sort_messages(data, sort_key='submission_time', reverse=False):
-    return util.sort_messages(data=data, sort_key=sort_key, reverse=reverse)
+def sort_messages(data, sort_key='submission_time', reverse_sorting=False):
+    return util.sort_messages(data=data, sort_key=sort_key, reverse_sorting=reverse_sorting)
 
 
 def format_header(header=question_header):
