@@ -3,7 +3,7 @@ import os
 
 PATH_ANSWER = 'sample_data/answer.csv'
 PATH_QUESTION = 'sample_data/question.csv'
-HEADER_ANSWER = ('id', 'submission_time', 'vote_number', 'message', 'image')
+HEADER_ANSWER = ('id', 'submission_time', 'vote_number', 'question_id', 'message', 'image')
 HEADER_QUESTION = ('id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image')
 
 

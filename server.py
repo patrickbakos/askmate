@@ -92,6 +92,13 @@ def route_edit_question(question_id):
                            )
 
 
+@app.route('/delete-question/<question_id>')
+def route_delete_question(question_id):
+    data_manager.delete_message(id=question_id, file=data_manager.question)
+    data_manager.delete_message(id=question_id, id_key='question_id', file=data_manager.answer)
+    return redirect(url_for('route_index'))
+
+
 if __name__ == "__main__":
     app.run(
         debug=True,

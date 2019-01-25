@@ -9,9 +9,10 @@ BUT in my theme i also using jquery via webpack so the loading order is now foll
 jquery
 booklet
 app.js (bundled file with webpack, including jquery)",images/image1.png
-2,1548427580.8743045,1364,57,Camera Plugi,DENGp),
+2,1493015432,1364,57,Drawing canvas with an image picked with Cordova Camera Plugin,"I'm getting an image from device and drawing a canvas with filters using Pixi JS. It works all well using computer to get an image. But when I'm on IOS, it throws errors such as cross origin issue, or that I'm trying to use an unknown format.
+
+This is the code I'm using to draw the image (that works on web/desktop but not cordova built ios app)",
 3,1547122425.6001482,,,Just a simple test case,"bla bla bla
 ",
 4,1547125272.7871802,,,How can I iterate on a dictionary's values?,I don't know how can I iterate on a dict's values in Python?,
 5,1547125440.640609,,,How can I iterate on a dictionary's values?,I don't know how can I iterate on a dict's values in Python?,
-6,1548368731.9487836,,,endi?,hihu ?I,

@@ -24,12 +24,15 @@ def add_message(message, file=question):
     connection.write_to_csv(old_messages, file=file)
 
 
-def delete_message(id, file=question):
-    old_messages = connection.read_from_csv(file, id)
-    for row in old_messages:
-        if row['id'] == id:
-            old_messages.remove(row)
-            return connection.write_to_csv(old_messages, file)
+def delete_message(id, id_key='id', file=question):
+    old_messages = connection.read_from_csv(file=file)
+    delete_messages = connection.read_from_csv(file=file, id=id, id_key=id_key)
+    for row in delete_messages:
+        for line in old_messages:
+            if row[id_key] == line[id_key]:
+                old_messages.remove(line)
+    print("data_man file:", file)
+    connection.write_to_csv(old_messages, file=file)
 
 
 def read_data(file=question, id=None, id_key='id'):

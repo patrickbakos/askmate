@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>{{ question[0]['title'] }}</h1>
-    <a href="{{ url_for('route_edit_question', question_id=question[0]['id']) }}"><button>Edit questino</button></a>
+    <a href="{{ url_for('route_edit_question', question_id=question[0]['id']) }}"><button>Edit question</button></a>
     <table>
         <theader>
             <tr>
@@ -29,6 +29,9 @@
             {% endfor %}
         </tbody>
     </table>
+    <form action="{{ url_for('route_delete_question', question_id=question[0]['id']) }}">
+    <a href="{{ url_for('route_index', question_id=question[0]['id']) }}"><button>Delete question</button></a>
+    </form>
     <table>
         <theader>
             <tr>
