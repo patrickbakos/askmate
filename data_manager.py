@@ -8,6 +8,16 @@ answer_header = connection.HEADER_ANSWER
 question_header = connection.HEADER_QUESTION
 
 
+def edit_message(message, file=question):
+    old_messages = connection.read_from_csv(file=file)
+    for row in old_messages:
+        print(row)
+        print(message)
+        if row['id'] == message[0]['id']:
+            row = message[0]
+    connection.write_to_csv(old_messages, file=file)
+
+
 def add_message(message, file=question):
     old_messages = connection.read_from_csv(file=file)
     old_messages.append(message)

@@ -61,8 +61,25 @@ def route_add_question():
         }
         data_manager.add_message(new_question)
         return redirect('/list')
-    return render_template('edit_question.html')
+    return render_template('edit_question.html',
+                           title_field='',
+                           message_field='',
+                           specific_url=url_for('route_add_question')
+                           )
 
+
+@app.route('/edit-question/<question_id>', methods=['GET', 'POST'])
+def route_edit_question(question_id):
+    question = data_manager.read_data(id=question_id)
+    if request.method == 'POST':
+        data_manager.edit_message(question)
+        return redirect('/question/<question_id>')
+
+    return render_template('edit_question.html',
+                           title_field=question[0]['title'],
+                           message_field=question[0]['message'],
+                           specific_url=url_for('route_edit_question', question_id=question_id)
+                           )
 
 if __name__ == "__main__":
     app.run(

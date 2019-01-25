@@ -29,6 +29,5 @@ def write_to_csv(data, file=PATH_QUESTION): #elvileg mukodik
         for row in data:
             writer.writerow(row)
 
-write_to_csv(read_from_csv(file='sample_data/question2.csv'))
 
 

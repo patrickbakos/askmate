@@ -6,12 +6,12 @@
 </head>
 <body>
 <h1>Add new question</h1>
-<form action="{{ url_for('route_add_question') }}" method="post">
+<form action="{{ specific_url }}" method="post">
     <h4>Title</h4>
-    <input type="text" name="title" size="40" maxlength="50" required>
+    <input type="text" name="title" size="40" maxlength="50" value="{{ title_field }}" required>
     <br>
     <h4>Message</h4>
-    <textarea name="message" cols="30" rows="10" maxlength="1000" required></textarea>
+    <textarea name="message" cols="30" rows="10" maxlength="1000" required>{{ message_field }}</textarea>
     <br>
     <a href="{{ url_for('route_index') }}"><button type="submit">Submit question</button></a>
 </form>
