@@ -10,12 +10,12 @@ question_header = connection.HEADER_QUESTION
 
 def edit_message(message, file=question):
     old_messages = connection.read_from_csv(file=file)
+    new_messages = []
     for row in old_messages:
-        print(row)
-        print(message)
-        if row['id'] == message[0]['id']:
-            row = message[0]
-    connection.write_to_csv(old_messages, file=file)
+        if row['id'] == message['id']:
+            row = message
+        new_messages.append(row)
+    connection.write_to_csv(new_messages, file=file)
 
 
 def add_message(message, file=question):

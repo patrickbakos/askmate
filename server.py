@@ -37,6 +37,7 @@ def route_index():
 @app.route('/question/<question_id>', methods=['GET', 'POST'])
 def route_question(question_id):
     question = data_manager.read_data(id=question_id)
+    print(question[0]['id'])
     answers = data_manager.read_data(file=data_manager.answer, id=question_id, id_key='question_id')
     question_header = data_manager.format_header()
     answer_header = data_manager.format_header(data_manager.answer_header)
@@ -72,14 +73,24 @@ def route_add_question():
 def route_edit_question(question_id):
     question = data_manager.read_data(id=question_id)
     if request.method == 'POST':
+        question = {
+            'id': question[0]['id'],
+            'title': request.form.get('title'),
+            'message': request.form.get('message'),
+            'submission_time': data_manager.get_time(),
+            'vote_number': question[0]['vote_number'],
+            'image': question[0]['image'],
+            'view_number': question[0]['view_number']
+        }
         data_manager.edit_message(question)
-        return redirect('/question/<question_id>')
+        return redirect(url_for('route_question', question_id=question_id))
 
     return render_template('edit_question.html',
                            title_field=question[0]['title'],
                            message_field=question[0]['message'],
                            specific_url=url_for('route_edit_question', question_id=question_id)
                            )
+
 
 if __name__ == "__main__":
     app.run(
