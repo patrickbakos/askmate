@@ -104,12 +104,14 @@ def route_answer(answer_id):
     question_id = data_manager.get_question_id(answer_id)
     question = data_manager.read_data(file=data_manager.question, id=question_id)
     answer = data_manager.read_data(file=data_manager.answer, id=answer_id)
+    url_delete = url_for('route_delete_answer', answer_id=answer_id)
     return render_template('answer.html',
                            answer_id=answer_id,
                            answer_header=data_manager.answer_header,
                            answer=answer,
                            question_header=data_manager.question_header,
                            question=question,
+                           url_delete=url_delete
                            )
 
 
@@ -128,6 +130,13 @@ def route_add_answer(question_id):
         return redirect(url_for('route_answer', answer_id=new_answer['id']))
     return render_template('edit_answer.html',
                            question_id=question_id)
+
+
+@app.route('/answer/<answer_id>/delete')
+def route_delete_answer(answer_id):
+    question_id = data_manager.get_question_id(answer_id)
+    data_manager.delete_message(id=answer_id, file=data_manager.answer)
+    return redirect(url_for('route_question', question_id=question_id))
 
 
 if __name__ == "__main__":
