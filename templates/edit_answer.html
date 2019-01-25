@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New answer</title>
+</head>
+<body>
+<h1>Add new answer</h1>
+<form action="{{ url_for('route_add_answer', question_id=question_id) }}", method="post">
+    <textarea name="message"  cols="30" rows="10" minlength="10" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

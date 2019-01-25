@@ -99,6 +99,37 @@ def route_delete_question(question_id):
     return redirect(url_for('route_index'))
 
 
+@app.route('/answer/<answer_id>')
+def route_answer(answer_id):
+    question_id = data_manager.get_question_id(answer_id)
+    question = data_manager.read_data(file=data_manager.question, id=question_id)
+    answer = data_manager.read_data(file=data_manager.answer, id=answer_id)
+    return render_template('answer.html',
+                           answer_id=answer_id,
+                           answer_header=data_manager.answer_header,
+                           answer=answer,
+                           question_header=data_manager.question_header,
+                           question=question,
+                           )
+
+
+@app.route('/question/<question_id>/new-answer', methods=['GET', 'POST'])
+def route_add_answer(question_id):
+    if request.method == 'POST':
+        new_answer = {
+            'id': data_manager.generate_id(file=data_manager.answer),
+            'submission_time': data_manager.get_time(),
+            'vote_number': None,
+            'question_id': question_id,
+            'message': request.form.get('message'),
+            'image': None
+        }
+        data_manager.add_message(new_answer, file=data_manager.answer)
+        return redirect(url_for('route_answer', answer_id=new_answer['id']))
+    return render_template('edit_answer.html',
+                           question_id=question_id)
+
+
 if __name__ == "__main__":
     app.run(
         debug=True,

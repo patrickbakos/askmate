@@ -72,12 +72,10 @@ def get_time():
     return time.time()
 
 
-'''new_question = {
-            'title': 'cuna',
-            'message': 'beszarsz cuna',
-            'submission_time': get_time(),
-            'id': generate_id(),
-            'view_number': None,
-            'vote_number': None,
-            'image': None
-            }'''
+def get_question_id(answer_id):
+    answers = connection.read_from_csv(file=connection.PATH_ANSWER)
+    for row in answers:
+        if row['id'] == answer_id:
+            question_id = row['question_id']
+            return question_id
+

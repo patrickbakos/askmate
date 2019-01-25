@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
+    <title>Answer</title>
 </head>
 <body>
     <h1>{{ question[0]['title'] }}</h1>
-    <a href="{{ url_for('route_edit_question', question_id=question[0]['id']) }}"><button>Edit question</button></a>
     <table>
         <theader>
             <tr>
@@ -29,12 +28,9 @@
             {% endfor %}
         </tbody>
     </table>
-    <form action="{{ url_for('route_delete_question', question_id=question[0]['id']) }}">
-        <a href="{{ url_for('route_index', question_id=question[0]['id']) }}"><button>Delete question</button></a>
-    </form>
     <br>
     <br>
-    <a href="{{ url_for('route_add_answer', question_id=question[0]['id']) }}"><button>New answer</button></a>
+
     <table>
         <theader>
             <tr>
@@ -44,9 +40,9 @@
             </tr>
         </theader>
         <tbody>
-        {% for row in answers %}
+        {% for row in answer %}
             <tr>
-                <td><a href="{{ url_for('route_answer', answer_id=row['id']) }}">{{ row['id'] }}</a></td>
+                <td>{{ row['id'] }}</td>
                 <td>{{ row['submission_time'] }}</td>
                 <td>{{ row['vote_number'] }}</td>
                 <td>{{ row['question_id'] }}</td>
